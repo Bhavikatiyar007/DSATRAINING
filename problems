@@ -1,0 +1,73 @@
+def next_greaterelement_to_right(self, nums: List[int]) -> List[int]:
+        n = len(nums)
+        nge = [-1] * n
+        st = []
+
+
+        for i in range(2 * n - 1, -1, -1):
+            while st and st[-1] <= nums[i % n]:
+                st.pop()
+
+
+            if i < n:
+                if st:
+                    nge[i] = st[-1]
+            st.append(nums[i % n])
+        return nge
+
+      
+      
+      
+      
+
+def nearest_greater_to_left(arr):
+    stack = Stack()
+    result = []
+
+    for i in range(0, len(arr)):
+        if stack.is_empty():
+            result.append(-1)
+            stack.push(arr[i])
+        elif not stack.is_empty():
+            while(not stack.is_empty() and arr[i] > stack.peek()):
+                stack.pop()
+            if stack.is_empty():
+                result.append(-1)
+            else:
+                result.append(stack.peek())
+            stack.push(arr[i])
+
+    return result
+
+  VALID PARENTHESIS
+   
+def areBracketsBalanced(expr):
+    stack = []
+ 
+   
+    for char in expr:
+        if char in ["(", "{", "["]:
+             stack.append(char)
+        else:
+            if not stack:
+                return False
+            current_char = stack.pop()
+            if current_char == '(':
+                if char != ")":
+                    return False
+            if current_char == '{':
+                if char != "}":
+                    return False
+            if current_char == '[':
+                if char != "]":
+                    return False
+ 
+    if stack:
+        return False
+    return True
+  
+  
+  
+  
+
+
